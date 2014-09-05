@@ -3,15 +3,9 @@ package com.bagaiev.entities;
 import com.bagaiev.entities.AbstractEntity;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 
 /**
@@ -32,11 +26,11 @@ public class Role extends AbstractEntity {
     @Column(nullable=false, length=15)
     private String name;
 
-	/*
+
 	//bi-directional many-to-one association to AccountRole
 	@OneToMany(mappedBy="role")
 	private List<AccountRole> accountRoles;
-	*/
+
 
     public Role() {
     }
@@ -63,12 +57,12 @@ public class Role extends AbstractEntity {
         this.name = name;
     }
 
-	/*public List<AccountRole> getAccountRoles() {
+	public List<AccountRole> getAccountRoles() {
 		return this.accountRoles;
 	}
 
 	public void setAccountRoles(List<AccountRole> accountRoles) {
 		this.accountRoles = accountRoles;
-	}*/
+	}
 
 }

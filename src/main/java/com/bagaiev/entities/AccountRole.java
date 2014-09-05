@@ -36,7 +36,7 @@ public class AccountRole extends AbstractEntity  {
     private Account account;
 
     //bi-directional many-to-one association to Role
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="id_role", nullable=false)
     private Role role;
 

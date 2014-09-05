@@ -2,19 +2,10 @@ package com.bagaiev.entities;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 
 /**
@@ -35,8 +26,9 @@ public class Account extends AbstractEntity {
     @Column(nullable=false)
     private Boolean active;
 
-    @Column(nullable=false)
-    private Timestamp created;
+    //@Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable=false, columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")
+    private Date created = new Date();
 
     @Column(nullable=false, length=100)
     private String email;
@@ -47,11 +39,14 @@ public class Account extends AbstractEntity {
     @Column(nullable=false, length=255)
     private String password;
 
+    @Column(name="first_name", length=80)
+    private String firstName;
+
     @Column(name="last_name", length=80)
     private String secondName;
 
     @Column(name="middle_name",length=80)
-    private String surname;
+    private String middleName;
 
     private Timestamp updated;
 
@@ -69,6 +64,18 @@ public class Account extends AbstractEntity {
     private List<Test> tests;
      */
     public Account() {
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public Long getIdAccount() {
@@ -93,7 +100,8 @@ public class Account extends AbstractEntity {
         this.active = active;
     }
 
-    public Timestamp getCreated() {
+    public Date getCreated() {
+
         return this.created;
     }
 
@@ -133,12 +141,12 @@ public class Account extends AbstractEntity {
         this.secondName = secondName;
     }
 
-    public String getSurname() {
-        return this.surname;
+    public String getMiddleName() {
+        return this.middleName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
     public Timestamp getUpdated() {
